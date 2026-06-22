@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 const IntaSend = require("intasend-node");
 
 function getIntaSend() {
-  const publishableKey = process.env.INTASEND_PUBLISHABLE_KEY;
-  const secretKey = process.env.INTASEND_SECRET_KEY;
+  const publishableKey = process.env.INTASEND_PUBLISHABLE_KEY || process.env.Publishable_Key;
+  const secretKey = process.env.INTASEND_SECRET_KEY || process.env.Secret_Key;
   const testMode = process.env.INTASEND_TEST_MODE !== "false";
 
   if (!publishableKey || !secretKey) {
