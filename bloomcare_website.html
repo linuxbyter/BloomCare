@@ -1,0 +1,901 @@
+i h<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom Care Foundation Kenya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #1a1a2e;
+  background: #ffffff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root {
+  --navy:    #1B2D6B;
+  --teal:    #2BAE8E;
+  --teal-dk: #1f8c72;
+  --purple:  #7B5EA7;
+  --gold:    #E8A020;
+  --rose:    #D4527A;
+  --green:   #3A9A3E;
+  --gray-50: #F7F8FA;
+  --gray-100:#ECEEF2;
+  --gray-200:#D1D5DE;
+  --gray-500:#6B7280;
+  --gray-700:#374151;
+  --white:   #ffffff;
+  --max-w:   1140px;
+  --pad-x:   clamp(1.25rem, 4vw, 3rem);
+  --radius:  8px;
+  --radius-lg: 14px;
+  --transition: 200ms ease;
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+.section    { padding: 5rem 0; }
+.section--alt { background: var(--gray-50); }
+.section--dark { background: var(--navy); color: var(--white); }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 0.75rem;
+}
+.eyebrow--light { color: #7dffd6; }
+
+.section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+.section-title--light { color: var(--white); }
+
+.section-lead {
+  font-size: 1rem;
+  color: var(--gray-500);
+  max-width: 560px;
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+}
+.section-lead--light { color: rgba(255,255,255,0.7); }
+
+/* ============================================================
+   LOGO ANIMATION — Web3 motion: glitch-free, physics-based
+   ============================================================ */
+@keyframes logo-reveal {
+  0%   { opacity: 0; transform: translateY(18px) scale(0.96); filter: blur(6px); }
+  60%  { opacity: 1; filter: blur(0); }
+  80%  { transform: translateY(-3px) scale(1.005); }
+  100% { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
+}
+@keyframes logo-pulse-ring {
+  0%   { transform: scale(0.85); opacity: 0; }
+  50%  { opacity: 0.18; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+@keyframes tagline-in {
+  0%   { opacity: 0; transform: translateY(10px); letter-spacing: 0.35em; }
+  100% { opacity: 1; transform: translateY(0);    letter-spacing: 0.16em; }
+}
+@keyframes pill-in {
+  0%   { opacity: 0; transform: translateX(-12px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes hero-text-in {
+  0%   { opacity: 0; transform: translateY(22px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes btn-in {
+  0%   { opacity: 0; transform: translateY(12px) scale(0.97); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes grid-in {
+  0%   { opacity: 0; transform: translateY(18px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-100);
+  height: 64px;
+  display: flex; align-items: center;
+}
+.nav__inner {
+  width: 100%; max-width: var(--max-w);
+  margin: 0 auto; padding: 0 var(--pad-x);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem;
+}
+.nav__brand {
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+}
+.nav__brand-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.nav__brand-name {
+  font-size: 1rem; font-weight: 700; color: var(--navy); line-height: 1.15;
+}
+.nav__brand-name span { color: var(--teal); }
+.nav__brand-sub {
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gray-500);
+}
+.nav__links {
+  display: flex; align-items: center; gap: 0.25rem;
+}
+.nav__links a {
+  font-size: 0.8125rem; font-weight: 500; color: var(--gray-700);
+  padding: 6px 12px; border-radius: var(--radius);
+  transition: background var(--transition), color var(--transition);
+}
+.nav__links a:hover { background: var(--gray-50); color: var(--navy); }
+.nav__links .nav__donate {
+  background: var(--teal); color: var(--white);
+  padding: 7px 18px; border-radius: 50px; font-weight: 600;
+  transition: background var(--transition);
+}
+.nav__links .nav__donate:hover { background: var(--teal-dk); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  background: var(--navy);
+  padding: 5rem 0 4rem;
+  overflow: hidden;
+  position: relative;
+}
+/* subtle grid bg */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(43,174,142,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43,174,142,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* LOGO BLOCK */
+.hero__logo-block {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 1.25rem;
+}
+.logo-animation-wrap {
+  position: relative;
+  width: 200px; height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto;
+}
+/* pulse ring behind logo */
+.logo-animation-wrap::before,
+.logo-animation-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(43,174,142,0.5);
+  animation: logo-pulse-ring 2.8s cubic-bezier(0.4,0,0.6,1) infinite;
+}
+.logo-animation-wrap::after {
+  animation-delay: 1.4s;
+}
+.logo-img {
+  width: 180px; height: 180px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+  padding: 10px;
+  opacity: 0;
+  animation: logo-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+  position: relative; z-index: 2;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+}
+.logo-tagline {
+  font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+  opacity: 0;
+  animation: tagline-in 0.8s cubic-bezier(0.22,1,0.36,1) 1.1s forwards;
+}
+.logo-tagline span { color: var(--teal); }
+.logo-pills {
+  display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+}
+.logo-pill {
+  font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 4px 12px; border-radius: 50px;
+  opacity: 0;
+}
+.logo-pill:nth-child(1) { animation: pill-in 0.5s ease 1.4s forwards; }
+.logo-pill:nth-child(2) { animation: pill-in 0.5s ease 1.55s forwards; }
+.logo-pill:nth-child(3) { animation: pill-in 0.5s ease 1.7s forwards; }
+
+/* HERO TEXT */
+.hero__text { }
+.hero__text .eyebrow {
+  opacity: 0;
+  animation: hero-text-in 0.6s ease 0.8s forwards;
+}
+.hero__text h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  animation: hero-text-in 0.7s ease 0.95s forwards;
+}
+.hero__text h1 em { color: #7dffd6; font-style: normal; }
+.hero__text p {
+  font-size: 0.9375rem; color: rgba(255,255,255,0.65);
+  line-height: 1.8; margin-bottom: 2rem;
+  opacity: 0;
+  animation: hero-text-in 0.7s ease 1.1s forwards;
+}
+.hero__btns {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  opacity: 0;
+  animation: btn-in 0.6s ease 1.3s forwards;
+}
+.btn {
+  display: inline-block;
+  font-size: 0.875rem; font-weight: 600;
+  padding: 11px 24px; border-radius: 50px;
+  transition: all var(--transition);
+  cursor: pointer;
+  border: none;
+}
+.btn--primary { background: var(--teal); color: var(--white); }
+.btn--primary:hover { background: var(--teal-dk); }
+.btn--ghost {
+  background: transparent; color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.3);
+}
+.btn--ghost:hover { border-color: rgba(255,255,255,0.7); }
+
+/* HERO STAT GRID */
+.hero__stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  margin-top: 2.5rem;
+  opacity: 0;
+  animation: grid-in 0.7s ease 1.5s forwards;
+}
+.hero__stat {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+}
+.hero__stat-num { font-size: 1.5rem; font-weight: 700; color: var(--white); line-height: 1; }
+.hero__stat-label { font-size: 0.6875rem; color: rgba(255,255,255,0.5); margin-top: 4px; line-height: 1.4; }
+.hero__stat--accent { border-color: rgba(43,174,142,0.4); background: rgba(43,174,142,0.08); }
+.hero__stat--accent .hero__stat-num { color: #7dffd6; }
+
+/* ============================================================
+   MISSION BAR
+   ============================================================ */
+.mission-bar {
+  background: var(--teal);
+  padding: 0.875rem var(--pad-x);
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 1.5rem;
+}
+.mission-bar__item {
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--white);
+  display: flex; align-items: center; gap: 8px;
+}
+.mission-bar__sep { width: 1px; height: 14px; background: rgba(255,255,255,0.3); }
+
+/* ============================================================
+   PROGRAMS
+   ============================================================ */
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.program-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.25rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.program-card:hover {
+  border-color: var(--gray-200);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.program-card__icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 1rem;
+}
+.program-card h3 { font-size: 0.9375rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+.program-card p  { font-size: 0.8125rem; color: var(--gray-500); line-height: 1.7; }
+
+/* ============================================================
+   HOW WE WORK
+   ============================================================ */
+.how-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
+}
+.step-list { display: flex; flex-direction: column; gap: 1rem; }
+.step {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--gray-100);
+  border-left: 3px solid var(--teal);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+.step__num {
+  width: 28px; height: 28px; min-width: 28px;
+  background: var(--teal); color: var(--white);
+  border-radius: 50%; font-size: 0.75rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.step h4 { font-size: 0.875rem; font-weight: 700; color: var(--navy); margin-bottom: 0.25rem; }
+.step p  { font-size: 0.8125rem; color: var(--gray-500); line-height: 1.65; }
+
+.coverage-box {
+  background: var(--navy); border-radius: var(--radius-lg); padding: 2rem;
+}
+.coverage-box h3 {
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #7dffd6; margin-bottom: 1rem;
+}
+.chip-set { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-size: 0.75rem; font-weight: 600; color: var(--white);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 5px 14px; border-radius: 50px;
+}
+.chip--teal { background: rgba(43,174,142,0.15); border-color: rgba(43,174,142,0.35); color: #7dffd6; }
+.who-block { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.1); }
+.who-block h4 {
+  font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem;
+}
+
+/* ============================================================
+   IMPACT
+   ============================================================ */
+.impact-grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem;
+  margin-top: 2.5rem;
+}
+.impact-card {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius); padding: 1.25rem;
+  text-align: center;
+}
+.impact-card__num { font-size: 2rem; font-weight: 700; color: #7dffd6; line-height: 1; }
+.impact-card__label { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 6px; line-height: 1.5; }
+
+/* ============================================================
+   TEAM
+   ============================================================ */
+.team-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 1rem;
+}
+.team-card {
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg); padding: 1.5rem 1rem; text-align: center;
+  background: var(--white);
+}
+.team-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 700; color: var(--white);
+  margin: 0 auto 0.875rem;
+}
+.team-card h4 { font-size: 0.875rem; font-weight: 700; color: var(--navy); }
+.team-card p  { font-size: 0.75rem; color: var(--teal); font-weight: 600; margin-top: 3px; }
+
+/* ============================================================
+   GET INVOLVED
+   ============================================================ */
+.involve-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem;
+}
+.involve-card {
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg); padding: 2rem 1.5rem;
+  background: var(--white);
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.involve-card__icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+.involve-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); }
+.involve-card p  { font-size: 0.8125rem; color: var(--gray-500); line-height: 1.7; flex: 1; }
+.involve-card .btn {
+  margin-top: 1rem; align-self: flex-start;
+  background: var(--navy); color: var(--white); border-radius: 50px;
+}
+.involve-card .btn:hover { background: var(--teal); }
+
+/* ============================================================
+   CONTACT BAND
+   ============================================================ */
+.contact-band {
+  background: var(--navy);
+  padding: 4rem 0; text-align: center;
+  border-top: 3px solid var(--teal);
+}
+.contact-band h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  color: var(--white); margin-bottom: 0.75rem;
+}
+.contact-band p { font-size: 0.9375rem; color: rgba(255,255,255,0.6); margin-bottom: 2rem; }
+.contact-band__btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.contact-band__meta {
+  display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+  margin-top: 2.5rem; padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.contact-band__meta-item { font-size: 0.8125rem; color: rgba(255,255,255,0.45); font-weight: 500; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: #0d1221;
+  padding: 1.25rem var(--pad-x);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 0.75rem;
+}
+.footer__copy { font-size: 0.75rem; color: rgba(255,255,255,0.35); font-weight: 500; }
+.footer__copy strong { color: rgba(255,255,255,0.6); }
+.footer__links { display: flex; gap: 1.25rem; }
+.footer__links a { font-size: 0.75rem; color: rgba(255,255,255,0.35); transition: color var(--transition); }
+.footer__links a:hover { color: var(--teal); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .hero__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero__logo-block { order: -1; }
+  .how-grid { grid-template-columns: 1fr; }
+  .impact-grid { grid-template-columns: repeat(2,1fr); }
+  .involve-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .nav__links a:not(.nav__donate) { display: none; }
+  .impact-grid { grid-template-columns: 1fr 1fr; }
+  .involve-grid { grid-template-columns: 1fr; }
+  .contact-band__meta { gap: 1rem; flex-direction: column; align-items: center; }
+  .footer { flex-direction: column; align-items: flex-start; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<header>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a class="nav__brand" href="/">
+        <div class="nav__brand-icon" aria-hidden="true">🌿</div>
+        <div>
+          <div class="nav__brand-name">bloom<span>care</span></div>
+          <div class="nav__brand-sub">Foundation Kenya</div>
+        </div>
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#reach">Who We Help</a></li>
+        <li><a href="#team">Governance</a></li>
+        <li><a href="#involve">Get Involved</a></li>
+        <li><a href="#contact" class="nav__donate">Donate</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<main>
+<section class="hero" aria-label="Introduction">
+  <div class="container">
+    <div class="hero__inner">
+
+      <!-- LOGO with Web3 motion -->
+      <div class="hero__logo-block">
+        <div class="logo-animation-wrap">
+          <!--
+            LOGO PLACEHOLDER
+            Replace src below with your actual logo path.
+            The image will animate in with reveal + pulse-ring motion.
+          -->
+          <img
+            class="logo-img"
+            src="IMG-20260604-WA0025.jpg"
+            alt="Bloom Care Foundation Kenya logo — colourful heart puzzle with figures and leaves"
+            width="180"
+            height="180"
+            onerror="this.style.background='#1f8c72';this.alt='BCF';this.style.display='flex';"
+          >
+        </div>
+        <div class="logo-tagline">
+          Empower&nbsp;<span>·</span>&nbsp;Include&nbsp;<span>·</span>&nbsp;Inspire
+        </div>
+        <ul class="logo-pills" role="list">
+          <li class="logo-pill">Autism Awareness</li>
+          <li class="logo-pill">Special Needs Support</li>
+          <li class="logo-pill">Community Inclusion</li>
+        </ul>
+      </div>
+
+      <!-- TEXT -->
+      <div class="hero__text" id="about">
+        <p class="eyebrow eyebrow--light">Public Benefit Organisation · Kenya</p>
+        <h1>Every child <em>deserves to bloom</em></h1>
+        <p>
+          Bloom Care Foundation Kenya provides therapeutic support, caregiver training and sensory equipment
+          for children with developmental conditions — including autism, sensory processing disorder
+          and intellectual disabilities — and their families across Kenya.
+        </p>
+        <div class="hero__btns">
+          <a href="#programs" class="btn btn--primary">Our Programs</a>
+          <a href="#involve" class="btn btn--ghost">Get Involved</a>
+        </div>
+
+        <div class="hero__stats" aria-label="Key facts">
+          <div class="hero__stat hero__stat--accent">
+            <div class="hero__stat-num">5+</div>
+            <div class="hero__stat-label">Counties of operation</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-num">PBO</div>
+            <div class="hero__stat-label">Registered under PBO Act No. 18 of 2013</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-num">OT</div>
+            <div class="hero__stat-label">Occupational &amp; sensory therapy</div>
+          </div>
+          <div class="hero__stat hero__stat--accent">
+            <div class="hero__stat-num">2026</div>
+            <div class="hero__stat-label">Year of registration</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MISSION BAR -->
+<div class="mission-bar" role="complementary" aria-label="Mission pillars">
+  <div class="mission-bar__item">Autism Awareness</div>
+  <div class="mission-bar__sep" aria-hidden="true"></div>
+  <div class="mission-bar__item">Special Needs Support</div>
+  <div class="mission-bar__sep" aria-hidden="true"></div>
+  <div class="mission-bar__item">Community Inclusion</div>
+  <div class="mission-bar__sep" aria-hidden="true"></div>
+  <div class="mission-bar__item">Empower · Include · Inspire</div>
+</div>
+
+<!-- ============================================================
+     PROGRAMS
+     ============================================================ -->
+<section class="section section--alt" id="programs" aria-labelledby="prog-title">
+  <div class="container">
+    <p class="eyebrow">What We Do</p>
+    <h2 class="section-title" id="prog-title">Our Core Programs</h2>
+    <p class="section-lead">
+      Five interconnected programs covering the full cycle of need — from early diagnosis
+      to long-term family empowerment — modelled on international best practice.
+    </p>
+
+    <div class="programs-grid" role="list">
+
+      <article class="program-card" role="listitem">
+        <div class="program-card__icon" style="background:rgba(43,174,142,0.12);" aria-hidden="true">🧠</div>
+        <h3>Therapy Services</h3>
+        <p>Occupational therapy, sensory integration, speech and language therapy, and behavioural support for children with developmental conditions.</p>
+      </article>
+
+      <article class="program-card" role="listitem">
+        <div class="program-card__icon" style="background:rgba(123,94,167,0.12);" aria-hidden="true">🏠</div>
+        <h3>Sensory Rooms &amp; Spaces</h3>
+        <p>Establishing and equipping sensory rooms and safe therapeutic spaces in communities that cannot access private facilities.</p>
+      </article>
+
+      <article class="program-card" role="listitem">
+        <div class="program-card__icon" style="background:rgba(232,160,32,0.12);" aria-hidden="true">📚</div>
+        <h3>Caregiver Training Centre</h3>
+        <p>Practical skills-building for parents, teachers and community members — turning unpaid caregivers into confident, capable champions.</p>
+      </article>
+
+      <article class="program-card" role="listitem">
+        <div class="program-card__icon" style="background:rgba(212,82,122,0.12);" aria-hidden="true">🍱</div>
+        <h3>Nutritional Support</h3>
+        <p>Targeted nutritional assistance for families of children with disabilities, recognising the link between nutrition and developmental outcomes.</p>
+      </article>
+
+      <article class="program-card" role="listitem">
+        <div class="program-card__icon" style="background:rgba(58,154,62,0.12);" aria-hidden="true">🤝</div>
+        <h3>Equipment Access</h3>
+        <p>Sourcing and supplying sensory and OT equipment to families who cannot afford paid services — locally fabricated or donated via partner networks.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW WE REACH FAMILIES
+     ============================================================ -->
+<section class="section" id="reach" aria-labelledby="how-title">
+  <div class="container">
+    <p class="eyebrow">Our Approach</p>
+    <h2 class="section-title" id="how-title">How we reach families</h2>
+
+    <div class="how-grid">
+      <div class="step-list" role="list">
+
+        <div class="step" role="listitem">
+          <div class="step__num" aria-hidden="true">1</div>
+          <div>
+            <h4>Identify &amp; Connect</h4>
+            <p>Working with hospitals, schools and county health teams to identify children who need early intervention and connect them to our services.</p>
+          </div>
+        </div>
+
+        <div class="step" role="listitem">
+          <div class="step__num" aria-hidden="true">2</div>
+          <div>
+            <h4>Assess &amp; Plan</h4>
+            <p>Our team conducts holistic assessments and designs an individual support plan grounded in occupational therapy best practice.</p>
+          </div>
+        </div>
+
+        <div class="step" role="listitem">
+          <div class="step__num" aria-hidden="true">3</div>
+          <div>
+            <h4>Deliver &amp; Equip</h4>
+            <p>We provide therapy, training, equipment and nutritional support. No child is turned away for inability to pay.</p>
+          </div>
+        </div>
+
+        <div class="step" role="listitem">
+          <div class="step__num" aria-hidden="true">4</div>
+          <div>
+            <h4>Empower &amp; Sustain</h4>
+            <p>Families leave with skills, tools and community connections to sustain progress long after their programme ends.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="coverage-box">
+          <h3>Where we operate</h3>
+          <div class="chip-set">
+            <span class="chip">Nairobi</span>
+            <span class="chip">Kiambu</span>
+            <span class="chip">Nyeri</span>
+            <span class="chip">Mombasa</span>
+            <span class="chip">Kisumu</span>
+            <span class="chip chip--teal">+ Expanding</span>
+          </div>
+          <div class="who-block">
+            <h4>Who we serve</h4>
+            <div class="chip-set">
+              <span class="chip">Autism Spectrum</span>
+              <span class="chip">Sensory Processing</span>
+              <span class="chip">Developmental Delays</span>
+              <span class="chip">Intellectual Disabilities</span>
+              <span class="chip">Family Caregivers</span>
+              <span class="chip">OVC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     IMPACT
+     ============================================================ -->
+<section class="section section--dark" aria-labelledby="impact-title">
+  <div class="container">
+    <p class="eyebrow eyebrow--light">Our Commitment</p>
+    <h2 class="section-title section-title--light" id="impact-title">Building a Kenya where every child blooms</h2>
+    <div class="impact-grid" role="list">
+      <div class="impact-card" role="listitem">
+        <div class="impact-card__num">5</div>
+        <div class="impact-card__label">Counties reached at launch</div>
+      </div>
+      <div class="impact-card" role="listitem">
+        <div class="impact-card__num">PBO</div>
+        <div class="impact-card__label">Registered Public Benefit Organisation</div>
+      </div>
+      <div class="impact-card" role="listitem">
+        <div class="impact-card__num">0</div>
+        <div class="impact-card__label">Children turned away for inability to pay</div>
+      </div>
+      <div class="impact-card" role="listitem">
+        <div class="impact-card__num">3</div>
+        <div class="impact-card__label">Sixth Schedule categories: Children · Disability · Health</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GOVERNANCE / TEAM
+     ============================================================ -->
+<section class="section section--alt" id="team" aria-labelledby="team-title">
+  <div class="container">
+    <p class="eyebrow">Governance</p>
+    <h2 class="section-title" id="team-title">Our founding board</h2>
+    <p class="section-lead">
+      A committed team of Kenyan professionals constituted under the PBO Act No. 18 of 2013
+      and the PBO Regulations 2026.
+    </p>
+    <div class="team-grid" role="list">
+
+      <div class="team-card" role="listitem">
+        <div class="team-avatar" style="background:var(--navy);">AK</div>
+        <h4>Agnes Nyawira Kionga</h4>
+        <p>Chairperson</p>
+      </div>
+
+      <div class="team-card" role="listitem">
+        <div class="team-avatar" style="background:var(--teal);">AM</div>
+        <h4>Alice Njeri Mukiri</h4>
+        <p>Secretary</p>
+      </div>
+
+      <div class="team-card" role="listitem">
+        <div class="team-avatar" style="background:var(--purple);">JM</div>
+        <h4>Julia Wanjiru Mukundi</h4>
+        <p>Treasurer</p>
+      </div>
+
+      <div class="team-card" role="listitem">
+        <div class="team-avatar" style="background:var(--rose);">EK</div>
+        <h4>Everline Wangari Kionga</h4>
+        <p>Director</p>
+      </div>
+
+      <div class="team-card" role="listitem">
+        <div class="team-avatar" style="background:var(--gold);">PM</div>
+        <h4>Peter Makau Musyoka</h4>
+        <p>Director</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GET INVOLVED
+     ============================================================ -->
+<section class="section" id="involve" aria-labelledby="involve-title">
+  <div class="container">
+    <p class="eyebrow">Join Us</p>
+    <h2 class="section-title" id="involve-title">How you can help</h2>
+    <div class="involve-grid" role="list">
+
+      <article class="involve-card" role="listitem">
+        <div class="involve-card__icon" aria-hidden="true">💛</div>
+        <h3>Donate</h3>
+        <p>Fund therapy sessions, sensory equipment and nutritional support for a child who cannot afford care.</p>
+        <a href="#contact" class="btn">Give Today</a>
+      </article>
+
+      <article class="involve-card" role="listitem">
+        <div class="involve-card__icon" aria-hidden="true">🙌</div>
+        <h3>Volunteer</h3>
+        <p>Therapists, trainers, educators and community advocates — your skills can transform a family's life.</p>
+        <a href="#contact" class="btn">Get Involved</a>
+      </article>
+
+      <article class="involve-card" role="listitem">
+        <div class="involve-card__icon" aria-hidden="true">🤝</div>
+        <h3>Partner with Us</h3>
+        <p>We welcome partnerships with corporates, hospitals, schools, Rotary clubs and international foundations.</p>
+        <a href="#contact" class="btn">Contact Us</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section class="contact-band" id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <h2 id="contact-title">Ready to make a difference?</h2>
+    <p>Reach out to Bloom Care Foundation Kenya — every connection matters.</p>
+    <div class="contact-band__btns">
+      <a href="mailto:info@bloomcarekenya.org" class="btn btn--primary">Send a Message</a>
+      <a href="#" class="btn btn--ghost">Download Our Brochure</a>
+    </div>
+    <div class="contact-band__meta">
+      <span class="contact-band__meta-item">📮 P.O. Box 328-00206, Kenya</span>
+      <span class="contact-band__meta-item">📍 Mashuria House, Kajiado-North</span>
+      <span class="contact-band__meta-item">🏛 Reg. No. NGO-7WULB5J</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer" role="contentinfo">
+  <p class="footer__copy">
+    <strong>Bloom Care Foundation Kenya</strong>
+    &nbsp;·&nbsp; Public Benefit Organisation
+    &nbsp;·&nbsp; PBO Act No. 18 of 2013
+    &nbsp;·&nbsp; PBO Regulations 2026
+  </p>
+  <nav class="footer__links" aria-label="Footer links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Safeguarding</a>
+    <a href="#">Annual Report</a>
+    <a href="#">Constitution</a>
+  </nav>
+</footer>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import GlassmorphismNavBar from "@/components/ui/glassmorphism-navigation";
+import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 const inter = Inter({
@@ -41,12 +41,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="min-h-screen flex flex-col">
+      <body>
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
-        <GlassmorphismNavBar />
-        <main id="main-content" className="flex-1 pt-20 md:pt-24">
+        <Nav />
+        <main id="main-content">
           {children}
         </main>
         <Footer />
