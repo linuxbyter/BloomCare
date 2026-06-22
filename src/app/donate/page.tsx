@@ -15,200 +15,104 @@ export default function DonatePage() {
 
   const selectedAmount = amount || (customAmount ? Number(customAmount) : 0);
 
-  function handlePresetClick(val: number) {
+  function handlePreset(val: number) {
     setAmount(val);
     setCustomAmount("");
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
-    if (!selectedAmount || !phone) {
-      setStatus("error");
-      setMessage("Please enter a valid amount and phone number.");
-      return;
-    }
-
+    if (!selectedAmount || !phone) { setStatus("error"); setMessage("Please enter a valid amount and phone number."); return; }
     setStatus("sending");
-
     try {
-      const res = await fetch("/api/donate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          phone,
-          amount: selectedAmount,
-          name: name || "Anonymous",
-          email,
-        }),
-      });
-
+      const res = await fetch("/api/donate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ phone, amount: selectedAmount, name: name || "Anonymous", email }) });
       const data = await res.json();
-
-      if (res.ok) {
-        setStatus("sent");
-        setMessage(data.message || "Payment request sent. Check your phone for the M-Pesa prompt.");
-      } else {
-        setStatus("error");
-        setMessage(data.error || "Payment failed. Please try again.");
-      }
-    } catch {
-      setStatus("error");
-      setMessage("Network error. Please try again.");
-    }
+      if (res.ok) { setStatus("sent"); setMessage(data.message || "Payment request sent. Check your phone for the M-Pesa prompt."); }
+      else { setStatus("error"); setMessage(data.error || "Payment failed. Please try again."); }
+    } catch { setStatus("error"); setMessage("Network error. Please try again."); }
   }
 
   return (
-    <div className="bg-white">
-      <div className="max-w-6xl mx-auto px-6 md:px-8 pt-16 pb-24 md:pt-24 md:pb-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Left — Info */}
-          <div>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal mb-5 block">
-              Donate
-            </span>
-            <h1 className="text-3xl md:text-[2.75rem] font-bold text-navy mb-5 text-balance">
-              Support a child&apos;s journey
-            </h1>
-            <p className="text-base text-gray-400 leading-relaxed mb-10 max-w-md">
-              Your donation helps us provide therapy, equipment, and training to
-              children with developmental conditions and their families across
-              Kenya.
-            </p>
+    <>
+      {/* Hero */}
+      <section style={{ background: "var(--navy)", padding: "5rem 0 3rem", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(43,174,142,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(43,174,142,0.035) 1px, transparent 1px)", backgroundSize: "48px 48px", pointerEvents: "none" }} aria-hidden="true" />
+        <div className="container" style={{ position: "relative" }}>
+          <p style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#7dffd6", marginBottom: "0.75rem" }}>Donate</p>
+          <h1 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)", color: "var(--white)", lineHeight: 1.15, marginBottom: "1rem" }}>Support a child&apos;s journey</h1>
+          <p style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: 640 }}>
+            Your donation helps us provide therapy, equipment, and training to children with developmental conditions and their families across Kenya.
+          </p>
+        </div>
+      </section>
 
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">
-                  What your donation supports
-                </h3>
-                <ul className="space-y-3">
-                  {[
-                    "Therapy sessions for children who cannot afford them",
-                    "Sensory room equipment and maintenance",
-                    "Caregiver training in underserved communities",
-                    "Nutritional support for children with special dietary needs",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-gray-500">
-                      <span className="w-1 h-1 rounded-full bg-teal mt-2 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-gray-50 border border-gray-100">
-                <h3 className="text-sm font-semibold text-navy mb-2">
-                  M-Pesa Payment
-                </h3>
-                <p className="text-xs text-gray-400 leading-relaxed">
-                  Donations are processed via M-Pesa STK Push. You will receive
-                  a prompt on your phone to enter your M-Pesa PIN. All
-                  transactions are secure and handled by Safaricom.
+      {/* Form */}
+      <section className="section">
+        <div className="container">
+          <div className="how-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start" }}>
+            {/* Info */}
+            <div>
+              <p className="eyebrow">What your donation supports</p>
+              <ul style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem", marginBottom: "2rem" }}>
+                {["Therapy sessions for children who cannot afford them", "Sensory room equipment and maintenance", "Caregiver training in underserved communities", "Nutritional support for children with special dietary needs"].map((item) => (
+                  <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", fontSize: "0.875rem", color: "var(--gray-500)", lineHeight: 1.7 }}>
+                    <span style={{ width: 6, height: 6, minWidth: 6, borderRadius: "50%", background: "var(--teal)", marginTop: 7 }} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div style={{ border: "1px solid var(--gray-100)", borderRadius: "var(--radius-lg)", padding: "1.5rem", background: "var(--gray-50)" }}>
+                <h3 style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--navy)", marginBottom: "0.5rem", fontFamily: "var(--font-inter)" }}>M-Pesa Payment</h3>
+                <p style={{ fontSize: "0.8125rem", color: "var(--gray-500)", lineHeight: 1.7 }}>
+                  Donations are processed via M-Pesa STK Push. You will receive a prompt on your phone to enter your M-Pesa PIN. All transactions are secure and handled by Safaricom.
                 </p>
               </div>
             </div>
-          </div>
 
-          {/* Right — Form */}
-          <div>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Amount */}
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
-                  Amount (KES)
-                </label>
-                <div className="grid grid-cols-2 gap-2.5 mb-3">
-                  {presetAmounts.map((val) => (
-                    <button
-                      key={val}
-                      type="button"
-                      onClick={() => handlePresetClick(val)}
-                      className={`py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                        amount === val
-                          ? "bg-navy text-white shadow-[0_2px_8px_rgba(27,45,107,0.2)]"
-                          : "bg-gray-50 text-gray-600 border border-gray-100 hover:border-gray-200"
-                      }`}
-                    >
-                      {val.toLocaleString()}
-                    </button>
-                  ))}
+            {/* Form */}
+            <div style={{ border: "1px solid var(--gray-100)", borderRadius: "var(--radius-lg)", padding: "2rem", background: "var(--white)" }}>
+              <form onSubmit={handleSubmit}>
+                {/* Amount */}
+                <div style={{ marginBottom: "1.5rem" }}>
+                  <label style={{ display: "block", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "0.75rem" }}>Amount (KES)</label>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem", marginBottom: "0.75rem" }}>
+                    {presetAmounts.map((val) => (
+                      <button key={val} type="button" onClick={() => handlePreset(val)} style={{ padding: "14px", borderRadius: "var(--radius)", fontSize: "0.875rem", fontWeight: 600, cursor: "pointer", border: amount === val ? "none" : "1.5px solid var(--gray-100)", background: amount === val ? "var(--navy)" : "var(--gray-50)", color: amount === val ? "var(--white)" : "var(--gray-700)", transition: "all 200ms ease" }}>
+                        {val.toLocaleString()}
+                      </button>
+                    ))}
+                  </div>
+                  <input type="number" min="100" placeholder="Custom amount" value={customAmount} onChange={(e) => { setCustomAmount(e.target.value); setAmount(""); }} className="form-input" />
                 </div>
-                <input
-                  type="number"
-                  min="100"
-                  placeholder="Custom amount"
-                  value={customAmount}
-                  onChange={(e) => {
-                    setCustomAmount(e.target.value);
-                    setAmount("");
-                  }}
-                  className="form-input"
-                />
-              </div>
 
-              {/* Phone */}
-              <div>
-                <label htmlFor="donate-phone" className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
-                  M-Pesa Phone Number
-                </label>
-                <input
-                  id="donate-phone"
-                  type="tel"
-                  placeholder="0700 000 000"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                  className="form-input"
-                />
-              </div>
+                {/* Phone */}
+                <div style={{ marginBottom: "1.5rem" }}>
+                  <label htmlFor="donate-phone" style={{ display: "block", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "0.5rem" }}>M-Pesa Phone Number</label>
+                  <input id="donate-phone" type="tel" placeholder="0700 000 000" value={phone} onChange={(e) => setPhone(e.target.value)} required className="form-input" />
+                </div>
 
-              {/* Name */}
-              <div>
-                <label htmlFor="donate-name" className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
-                  Name <span className="font-normal lowercase">(optional)</span>
-                </label>
-                <input
-                  id="donate-name"
-                  type="text"
-                  placeholder="Your name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="form-input"
-                />
-              </div>
+                {/* Name */}
+                <div style={{ marginBottom: "1.5rem" }}>
+                  <label htmlFor="donate-name" style={{ display: "block", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "0.5rem" }}>Name <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(optional)</span></label>
+                  <input id="donate-name" type="text" placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)} className="form-input" />
+                </div>
 
-              {/* Email */}
-              <div>
-                <label htmlFor="donate-email" className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
-                  Email <span className="font-normal lowercase">(optional — for receipt)</span>
-                </label>
-                <input
-                  id="donate-email"
-                  type="email"
-                  placeholder="you@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="form-input"
-                />
-              </div>
+                {/* Email */}
+                <div style={{ marginBottom: "1.5rem" }}>
+                  <label htmlFor="donate-email" style={{ display: "block", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "0.5rem" }}>Email <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(optional — for receipt)</span></label>
+                  <input id="donate-email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} className="form-input" />
+                </div>
 
-              {message && (
-                <p className={`text-sm font-medium ${status === "sent" ? "text-teal" : "text-rose"}`}>
-                  {message}
-                </p>
-              )}
+                {message && <p style={{ fontSize: "0.875rem", fontWeight: 600, color: status === "sent" ? "var(--teal)" : "var(--rose)", marginBottom: "1rem" }}>{message}</p>}
 
-              <button
-                type="submit"
-                disabled={status === "sending" || !selectedAmount || !phone}
-                className="btn-donate w-full disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                {status === "sending" ? "Processing…" : `Donate KES ${selectedAmount ? selectedAmount.toLocaleString() : ""}`}
-              </button>
-            </form>
+                <button type="submit" disabled={status === "sending" || !selectedAmount || !phone} className="btn btn--primary" style={{ width: "100%", justifyContent: "center", opacity: status === "sending" || !selectedAmount || !phone ? 0.4 : 1, cursor: status === "sending" || !selectedAmount || !phone ? "not-allowed" : "pointer" }}>
+                  {status === "sending" ? "Processing\u2026" : `Donate KES ${selectedAmount ? selectedAmount.toLocaleString() : ""}`}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

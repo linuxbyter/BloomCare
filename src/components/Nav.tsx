@@ -43,25 +43,13 @@ export default function Nav() {
           }}
         >
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
-            <div
-              style={{
-                width: 36,
-                height: 36,
-                borderRadius: "50%",
-                background: "var(--navy)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-              }}
-            >
-              <span
-                style={{ fontSize: 16, color: "white", fontWeight: 700, fontFamily: "var(--font-playfair)" }}
-                aria-hidden="true"
-              >
-                B
-              </span>
-            </div>
+            <img
+              src="/images/logo.jpg"
+              alt="Bloom Care Foundation Kenya logo"
+              width={36}
+              height={36}
+              style={{ borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
+            />
             <div>
               <div style={{ fontSize: "1rem", fontWeight: 700, color: "var(--navy)", lineHeight: 1.15 }}>
                 bloom<span style={{ color: "var(--teal)" }}>care</span>

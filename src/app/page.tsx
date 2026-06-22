@@ -76,7 +76,7 @@ export default function HomePage() {
                 <div style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "1.5px solid rgba(43,174,142,0.4)", animation: "pulse-ring 2.8s cubic-bezier(0.4,0,0.6,1) infinite" }} aria-hidden="true" />
                 <div style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "1.5px solid rgba(43,174,142,0.4)", animation: "pulse-ring 2.8s cubic-bezier(0.4,0,0.6,1) infinite 1.4s" }} aria-hidden="true" />
                 <img
-                  src="/images/IMG-20260604-WA0025.jpg"
+                  src="/images/logo.jpg"
                   alt="Bloom Care Foundation Kenya logo"
                   width={180}
                   height={180}

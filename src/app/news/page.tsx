@@ -2,116 +2,51 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "News & Stories",
-  description:
-    "Updates, stories, and news from Bloom Care Foundation Kenya.",
+  description: "Updates, stories, and news from Bloom Care Foundation Kenya.",
 };
 
 const posts = [
-  {
-    slug: "sensory-room-launch-nairobi",
-    title: "New Sensory Room Opens in Nairobi",
-    date: "June 2026",
-    excerpt:
-      "A new sensory room has been established at a primary school in Nairobi, providing therapeutic support for over 30 children with developmental conditions.",
-    category: "Program Update",
-  },
-  {
-    slug: "caregiver-training-cohort-2026",
-    title: "Caregiver Training — 2026 Cohort",
-    date: "May 2026",
-    excerpt:
-      "Fifty caregivers completed our latest training programme, gaining practical skills to support children with sensory and developmental needs at home.",
-    category: "Training",
-  },
-  {
-    slug: "expansion-to-kisumu",
-    title: "Expanding Our Reach to Kisumu",
-    date: "April 2026",
-    excerpt:
-      "Bloom Care Foundation has officially expanded operations to Kisumu County, bringing therapeutic services to western Kenya for the first time.",
-    category: "Milestone",
-  },
-  {
-    slug: "world-autism-awareness-2026",
-    title: "World Autism Awareness Day 2026",
-    date: "April 2026",
-    excerpt:
-      "We joined communities across Kenya to raise awareness about autism spectrum disorder and the importance of early intervention.",
-    category: "Event",
-  },
-  {
-    slug: "equipment-drive-results",
-    title: "Equipment Drive Results",
-    date: "March 2026",
-    excerpt:
-      "Our equipment drive provided sensory tools and therapeutic aids to over 50 families across Nairobi and Kiambu counties.",
-    category: "Impact",
-  },
-  {
-    slug: "partnership-mombasa-hospital",
-    title: "Healthcare Partnership in Mombasa",
-    date: "February 2026",
-    excerpt:
-      "A new partnership with a Mombasa hospital will integrate our sensory therapy services into their paediatric care programme.",
-    category: "Partnership",
-  },
+  { title: "New Sensory Room Opens in Nairobi", date: "June 2026", excerpt: "A new sensory room has been established at a primary school in Nairobi, providing therapeutic support for over 30 children with developmental conditions.", cat: "Program Update", color: "var(--teal)" },
+  { title: "Caregiver Training — 2026 Cohort", date: "May 2026", excerpt: "Fifty caregivers completed our latest training programme, gaining practical skills to support children with sensory and developmental needs at home.", cat: "Training", color: "var(--gold)" },
+  { title: "Expanding Our Reach to Kisumu", date: "April 2026", excerpt: "Bloom Care Foundation has officially expanded operations to Kisumu County, bringing therapeutic services to western Kenya for the first time.", cat: "Milestone", color: "var(--purple)" },
+  { title: "World Autism Awareness Day 2026", date: "April 2026", excerpt: "We joined communities across Kenya to raise awareness about autism spectrum disorder and the importance of early intervention.", cat: "Event", color: "var(--rose)" },
+  { title: "Equipment Drive Results", date: "March 2026", excerpt: "Our equipment drive provided sensory tools and therapeutic aids to over 50 families across Nairobi and Kiambu counties.", cat: "Impact", color: "var(--navy)" },
+  { title: "Healthcare Partnership in Mombasa", date: "February 2026", excerpt: "A new partnership with a Mombasa hospital will integrate our sensory therapy services into their paediatric care programme.", cat: "Partnership", color: "var(--teal)" },
 ];
-
-const categoryColors: Record<string, string> = {
-  "Program Update": "var(--teal)",
-  Training: "var(--gold)",
-  Milestone: "var(--purple)",
-  Event: "var(--rose)",
-  Impact: "var(--navy)",
-  Partnership: "var(--teal)",
-};
 
 export default function NewsPage() {
   return (
-    <div className="bg-white">
-      <div className="max-w-6xl mx-auto px-6 md:px-8 pt-16 pb-12 md:pt-24 md:pb-16">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal mb-5 block">
-          News & Stories
-        </span>
-        <h1 className="text-3xl md:text-[2.75rem] font-bold text-navy mb-5">
-          Latest updates
-        </h1>
-        <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl">
-          Stories of impact, program updates, and news from Bloom Care
-          Foundation Kenya.
-        </p>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-8 pb-24 md:pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {posts.map((post) => (
-            <article
-              key={post.slug}
-              className="group p-7 rounded-2xl border border-gray-100 hover:border-gray-200 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300"
-            >
-              <div className="flex items-center gap-3 mb-5">
-                <span
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider"
-                  style={{
-                    color: categoryColors[post.category] || "var(--teal)",
-                    background: `color-mix(in srgb, ${categoryColors[post.category] || "var(--teal)"} 8%, transparent)`,
-                  }}
-                >
-                  {post.category}
-                </span>
-                <span className="text-xs text-gray-300">·</span>
-                <time className="text-xs text-gray-400">{post.date}</time>
-              </div>
-              <h2 className="text-lg font-bold text-navy mb-3 group-hover:text-teal transition-colors duration-300">
-                {post.title}
-              </h2>
-              <p className="text-sm text-gray-400 leading-relaxed">
-                {post.excerpt}
-              </p>
-            </article>
-          ))}
+    <>
+      {/* Hero */}
+      <section style={{ background: "var(--navy)", padding: "5rem 0 3rem", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(43,174,142,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(43,174,142,0.035) 1px, transparent 1px)", backgroundSize: "48px 48px", pointerEvents: "none" }} aria-hidden="true" />
+        <div className="container" style={{ position: "relative" }}>
+          <p style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#7dffd6", marginBottom: "0.75rem" }}>News & Stories</p>
+          <h1 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)", color: "var(--white)", lineHeight: 1.15, marginBottom: "1rem" }}>Latest Updates</h1>
+          <p style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: 640 }}>
+            Stories of impact, program updates, and news from Bloom Care Foundation Kenya.
+          </p>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* Grid */}
+      <section className="section" style={{ background: "var(--gray-50)" }}>
+        <div className="container">
+          <div className="programs-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1rem" }}>
+            {posts.map((post) => (
+              <article key={post.title} className="hover-lift" style={{ background: "var(--white)", border: "1px solid var(--gray-100)", borderRadius: "var(--radius-lg)", padding: "1.75rem 1.5rem" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
+                  <span style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.06em", color: post.color, background: `color-mix(in srgb, ${post.color} 10%, transparent)`, padding: "3px 10px", borderRadius: 50 }}>{post.cat}</span>
+                  <span style={{ fontSize: "0.75rem", color: "var(--gray-200)" }}>&middot;</span>
+                  <time style={{ fontSize: "0.75rem", color: "var(--gray-500)" }}>{post.date}</time>
+                </div>
+                <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "1.125rem", color: "var(--navy)", marginBottom: "0.75rem", lineHeight: 1.3 }}>{post.title}</h2>
+                <p style={{ fontSize: "0.8125rem", color: "var(--gray-500)", lineHeight: 1.7 }}>{post.excerpt}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

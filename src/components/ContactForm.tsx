@@ -9,86 +9,34 @@ export default function ContactForm() {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-
     setStatus("sending");
-
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.get("name"),
-          email: data.get("email"),
-          message: data.get("message"),
-        }),
-      });
-
-      if (res.ok) {
-        setStatus("sent");
-        form.reset();
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
+      const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: data.get("name"), email: data.get("email"), message: data.get("message") }) });
+      if (res.ok) { setStatus("sent"); form.reset(); } else { setStatus("error"); }
+    } catch { setStatus("error"); }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-      <div>
-        <label htmlFor="contact-name" className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
-          Name
-        </label>
-        <input
-          id="contact-name"
-          name="name"
-          type="text"
-          required
-          className="form-input"
-          placeholder="Your full name"
-        />
-      </div>
-      <div>
-        <label htmlFor="contact-email" className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
-          Email
-        </label>
-        <input
-          id="contact-email"
-          name="email"
-          type="email"
-          required
-          className="form-input"
-          placeholder="you@example.com"
-        />
-      </div>
-      <div>
-        <label htmlFor="contact-message" className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
-          Message
-        </label>
-        <textarea
-          id="contact-message"
-          name="message"
-          required
-          className="form-input"
-          placeholder="How can we help?"
-          rows={5}
-        />
+    <form onSubmit={handleSubmit}>
+      {[
+        { id: "contact-name", label: "Name", type: "text", name: "name", placeholder: "Your full name", required: true },
+        { id: "contact-email", label: "Email", type: "email", name: "email", placeholder: "you@example.com", required: true },
+      ].map((f) => (
+        <div key={f.id} style={{ marginBottom: "1.25rem" }}>
+          <label htmlFor={f.id} style={{ display: "block", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "0.5rem" }}>{f.label}</label>
+          <input id={f.id} name={f.name} type={f.type} required={f.required} className="form-input" placeholder={f.placeholder} />
+        </div>
+      ))}
+      <div style={{ marginBottom: "1.25rem" }}>
+        <label htmlFor="contact-message" style={{ display: "block", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)", marginBottom: "0.5rem" }}>Message</label>
+        <textarea id="contact-message" name="message" required className="form-input" placeholder="How can we help?" rows={5} />
       </div>
 
-      {status === "sent" && (
-        <p className="text-sm font-medium text-teal">Thank you. We will get back to you shortly.</p>
-      )}
-      {status === "error" && (
-        <p className="text-sm font-medium text-rose">Something went wrong. Please try again.</p>
-      )}
+      {status === "sent" && <p style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--teal)", marginBottom: "1rem" }}>Thank you. We will get back to you shortly.</p>}
+      {status === "error" && <p style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--rose)", marginBottom: "1rem" }}>Something went wrong. Please try again.</p>}
 
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="btn-primary w-full sm:w-auto disabled:opacity-40 disabled:cursor-not-allowed"
-      >
-        {status === "sending" ? "Sending…" : "Send Message"}
+      <button type="submit" disabled={status === "sending"} className="btn btn--primary" style={{ opacity: status === "sending" ? 0.4 : 1 }}>
+        {status === "sending" ? "Sending\u2026" : "Send Message"}
       </button>
     </form>
   );

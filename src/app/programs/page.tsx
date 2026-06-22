@@ -1,177 +1,118 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Programs",
-  description:
-    "Core programs at Bloom Care Foundation — occupational therapy, sensory rooms, caregiver training, nutritional support, and equipment access.",
+  description: "Core programs at Bloom Care Foundation — occupational therapy, sensory rooms, caregiver training, nutritional support, and equipment access.",
 };
 
 const programs = [
   {
     id: "therapy",
-    title: "Occupational & Sensory Therapy",
-    description:
-      "We provide one-on-one and group therapy sessions designed to improve sensory processing, fine and gross motor skills, and daily living abilities for children with developmental conditions.",
-    details: [
-      "Individualised assessment and therapy plans",
-      "Sensory integration therapy",
-      "Fine and gross motor skill development",
-      "Social skills group sessions",
-      "School-based therapy support",
-    ],
-    counties: "All five operational counties",
+    icon: "\u{1F9E0}",
     color: "var(--teal)",
+    title: "Occupational & Sensory Therapy",
+    desc: "One-on-one and group therapy sessions designed to improve sensory processing, fine and gross motor skills, and daily living abilities for children with developmental conditions.",
+    details: ["Individualised assessment and therapy plans", "Sensory integration therapy", "Fine and gross motor skill development", "Social skills group sessions", "School-based therapy support"],
+    counties: "All five operational counties",
   },
   {
     id: "sensory-rooms",
-    title: "Sensory Room Establishment",
-    description:
-      "We design and equip purpose-built sensory environments in schools, hospitals, and community spaces. These rooms provide controlled sensory input for calming, stimulation, and therapeutic engagement.",
-    details: [
-      "Needs assessment and room design",
-      "Equipment procurement and installation",
-      "Staff training on room usage",
-      "Ongoing maintenance and support",
-    ],
-    counties: "Nairobi, Kiambu, Nyeri, Mombasa, Kisumu",
+    icon: "\u{1F3E0}",
     color: "var(--purple)",
+    title: "Sensory Rooms & Spaces",
+    desc: "We design and equip purpose-built sensory environments in schools, hospitals, and community spaces. These rooms provide controlled sensory input for calming, stimulation, and therapeutic engagement.",
+    details: ["Needs assessment and room design", "Equipment procurement and installation", "Staff training on room usage", "Ongoing maintenance and support"],
+    counties: "Nairobi, Kiambu, Nyeri, Mombasa, Kisumu",
   },
   {
     id: "caregiver-training",
-    title: "Caregiver Training",
-    description:
-      "We equip parents, guardians, and community health workers with knowledge and practical skills to support children with developmental needs at home and in the community.",
-    details: [
-      "Understanding developmental conditions",
-      "Home-based therapy techniques",
-      "Communication strategies",
-      "Managing sensory needs daily",
-      "Community awareness workshops",
-    ],
-    counties: "All five operational counties",
+    icon: "\u{1F4DA}",
     color: "var(--gold)",
+    title: "Caregiver Training Centre",
+    desc: "Practical skills-building for parents, teachers and community members — turning unpaid caregivers into confident, capable champions for children with developmental needs.",
+    details: ["Understanding developmental conditions", "Home-based therapy techniques", "Communication strategies", "Managing sensory needs daily", "Community awareness workshops"],
+    counties: "All five operational counties",
   },
   {
     id: "nutrition",
-    title: "Nutritional Support",
-    description:
-      "We provide guidance on specialised diets and nutritional plans tailored to the needs of children with autism, sensory disorders, and developmental delays.",
-    details: [
-      "Nutritional assessment for each child",
-      "Tailored dietary plans",
-      "Parent education on meal planning",
-      "Collaboration with healthcare providers",
-    ],
-    counties: "Nairobi, Kiambu, Nyeri",
+    icon: "\u{1F371}",
     color: "var(--rose)",
+    title: "Nutritional Support",
+    desc: "Targeted nutritional assistance for families of children with disabilities, recognising the critical link between nutrition and developmental outcomes.",
+    details: ["Nutritional assessment for each child", "Tailored dietary plans", "Parent education on meal planning", "Collaboration with healthcare providers"],
+    counties: "Nairobi, Kiambu, Nyeri",
   },
   {
     id: "equipment",
+    icon: "\u{1F91D}",
+    color: "var(--green)",
     title: "Equipment Access",
-    description:
-      "We provide therapeutic equipment and sensory tools to families who cannot afford paid services, ensuring no child is left without support due to financial barriers.",
-    details: [
-      "Assessment of equipment needs",
-      "Provision of sensory tools and aids",
-      "Loan programme for expensive equipment",
-      "Training on equipment usage",
-    ],
+    desc: "Sourcing and supplying sensory and OT equipment to families who cannot afford paid services — locally fabricated or donated via partner networks.",
+    details: ["Assessment of equipment needs", "Provision of sensory tools and aids", "Loan programme for expensive equipment", "Training on equipment usage"],
     counties: "All five operational counties",
-    color: "var(--navy)",
   },
 ];
 
 export default function ProgramsPage() {
   return (
-    <div className="bg-white">
-      {/* Header */}
-      <div className="max-w-6xl mx-auto px-6 md:px-8 pt-16 pb-12 md:pt-24 md:pb-16">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal mb-5 block">
-          Programs
-        </span>
-        <h1 className="text-3xl md:text-[2.75rem] font-bold text-navy mb-5 text-balance">
-          What we do
-        </h1>
-        <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl">
-          Five core programs designed to support children with developmental
-          conditions and their families across Kenya.
-        </p>
-      </div>
+    <>
+      {/* Hero */}
+      <section style={{ background: "var(--navy)", padding: "5rem 0 3rem", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(43,174,142,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(43,174,142,0.035) 1px, transparent 1px)", backgroundSize: "48px 48px", pointerEvents: "none" }} aria-hidden="true" />
+        <div className="container" style={{ position: "relative" }}>
+          <p style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#7dffd6", marginBottom: "0.75rem" }}>Programs</p>
+          <h1 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)", color: "var(--white)", lineHeight: 1.15, marginBottom: "1rem" }}>Our Core Programs</h1>
+          <p style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: 640 }}>
+            Five interconnected programs covering the full cycle of need — from early diagnosis to long-term family empowerment.
+          </p>
+        </div>
+      </section>
 
       {/* Programs */}
-      <div className="max-w-6xl mx-auto px-6 md:px-8 pb-24 md:pb-32">
-        <div className="space-y-0">
-          {programs.map((program, index) => (
-            <section
-              key={program.id}
-              id={program.id}
-              className="scroll-mt-24"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 py-12 md:py-16">
-                <div className="lg:col-span-4">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div
-                      className="w-2 h-8 rounded-full"
-                      style={{ background: program.color }}
-                    />
-                    <span className="text-[11px] font-bold text-gray-400 tabular-nums tracking-wider">
-                      0{index + 1}
-                    </span>
+      <section className="section" style={{ background: "var(--gray-50)" }}>
+        <div className="container">
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            {programs.map((p, i) => (
+              <div key={p.id} id={p.id} style={{ scrollMarginTop: "5rem" }}>
+                <div className="how-grid" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "3rem", padding: "3rem 0", borderBottom: i < programs.length - 1 ? "1px solid var(--gray-100)" : "none" }}>
+                  <div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+                      <span style={{ fontSize: "1.5rem" }}>{p.icon}</span>
+                      <span style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray-500)" }}>0{i + 1}</span>
+                    </div>
+                    <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "1.375rem", color: "var(--navy)", marginBottom: "0.5rem" }}>{p.title}</h2>
+                    <p style={{ fontSize: "0.75rem", color: "var(--gray-500)" }}>{p.counties}</p>
                   </div>
-                  <h2 className="text-xl md:text-2xl font-bold text-navy">
-                    {program.title}
-                  </h2>
-                  <p className="text-xs text-gray-400 mt-2">
-                    {program.counties}
-                  </p>
-                </div>
-                <div className="lg:col-span-8">
-                  <p className="text-sm text-gray-500 leading-relaxed mb-6">
-                    {program.description}
-                  </p>
-                  <ul className="space-y-2.5">
-                    {program.details.map((detail) => (
-                      <li
-                        key={detail}
-                        className="flex items-start gap-3 text-sm text-gray-600"
-                      >
-                        <span
-                          className="w-1 h-1 rounded-full mt-2 shrink-0"
-                          style={{ background: program.color }}
-                        />
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
+                  <div>
+                    <p style={{ fontSize: "0.9375rem", color: "var(--gray-500)", lineHeight: 1.8, marginBottom: "1.5rem" }}>{p.desc}</p>
+                    <ul style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+                      {p.details.map((d) => (
+                        <li key={d} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", fontSize: "0.8125rem", color: "var(--gray-700)", lineHeight: 1.7 }}>
+                          <span style={{ width: 6, height: 6, minWidth: 6, borderRadius: "50%", background: p.color, marginTop: 7 }} />
+                          {d}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
-              {index < programs.length - 1 && (
-                <div className="h-px bg-gray-100" />
-              )}
-            </section>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-16 pt-16 border-t border-gray-100 text-center">
-          <h2 className="text-2xl font-bold text-navy mb-3">
-            Interested in our programs?
-          </h2>
-          <p className="text-sm text-gray-400 mb-8 max-w-md mx-auto">
-            Contact us to learn more about how you can access or support our
-            programs.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/contact" className="btn-primary">
-              Contact Us
-            </Link>
-            <Link href="/donate" className="btn-outline">
-              Support Our Work
-            </Link>
+            ))}
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* CTA */}
+      <section style={{ background: "var(--navy)", padding: "4rem 0", textAlign: "center", borderTop: "3px solid var(--teal)" }}>
+        <div className="container">
+          <h2 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(1.4rem, 2.5vw, 2rem)", color: "var(--white)", marginBottom: "0.75rem" }}>Interested in our programs?</h2>
+          <p style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.55)", marginBottom: "2rem" }}>Contact us to learn more about how you can access or support our programs.</p>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+            <Link href="/contact" className="btn btn--primary">Contact Us</Link>
+            <Link href="/donate" className="btn btn--ghost">Support Our Work</Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
