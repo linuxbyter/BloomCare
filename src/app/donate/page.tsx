@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 const presetAmounts = [500, 1000, 2500, 5000];
 
 export default function DonatePage() {
+  const router = useRouter();
   const [amount, setAmount] = useState<number | "">("");
   const [customAmount, setCustomAmount] = useState("");
   const [phone, setPhone] = useState("");
@@ -27,7 +29,7 @@ export default function DonatePage() {
     try {
       const res = await fetch("/api/donate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ phone, amount: selectedAmount, name: name || "Anonymous", email }) });
       const data = await res.json();
-      if (res.ok) { setStatus("sent"); setMessage(data.message || "Payment request sent. Check your phone for the M-Pesa prompt."); }
+      if (res.ok) { router.push("/donate/success"); }
       else { setStatus("error"); setMessage(data.error || "Payment failed. Please try again."); }
     } catch { setStatus("error"); setMessage("Network error. Please try again."); }
   }
