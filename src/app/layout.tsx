@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import FloatingContact from "@/components/FloatingContact";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <FloatingContact />
       </body>
     </html>
   );
