@@ -84,11 +84,10 @@ export default function HomePage() {
                     width: 180, height: 180, objectFit: "contain", borderRadius: "50%",
                     background: "white", padding: 10, position: "relative", zIndex: 2,
                     boxShadow: "0 0 0 1px rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.2)",
-                    opacity: 0, animation: "logo-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards",
                   }}
                 />
               </div>
-              <div style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", opacity: 0, animation: "fade-up 0.8s ease 1.1s forwards" }}>
+              <div style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
                 {"Empower \u00b7 Include \u00b7 Inspire"}
               </div>
               <ul style={{ display: "flex", flexWrap: "wrap", gap: 6, justifyContent: "center" }} role="list">
@@ -102,24 +101,24 @@ export default function HomePage() {
 
             {/* Hero text */}
             <div className="hero-text">
-              <p style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#7dffd6", marginBottom: "0.75rem", opacity: 0, animation: "fade-up 0.6s ease 0.8s forwards" }}>
+              <p style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#7dffd6", marginBottom: "0.75rem" }}>
                 Public Benefit Organisation · Kenya
               </p>
-              <h1 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)", color: "var(--white)", lineHeight: 1.15, marginBottom: "1.25rem", opacity: 0, animation: "fade-up 0.7s ease 0.95s forwards" }}>
+              <h1 style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)", color: "var(--white)", lineHeight: 1.15, marginBottom: "1.25rem" }}>
                 Every child <em style={{ color: "#7dffd6", fontStyle: "normal" }}>deserves to bloom</em>
               </h1>
-              <p style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: "2rem", opacity: 0, animation: "fade-up 0.7s ease 1.1s forwards" }}>
+              <p style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: "2rem" }}>
                 Bloom Care Foundation Kenya provides therapeutic support, caregiver training and sensory equipment
                 for children with developmental conditions — including autism, sensory processing disorder
                 and intellectual disabilities — and their families across Kenya.
               </p>
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", opacity: 0, animation: "fade-up 0.6s ease 1.3s forwards" }}>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 <Link href="/programs" className="btn btn--primary">Our Programs</Link>
                 <Link href="/contact" className="btn btn--ghost">Get Involved</Link>
               </div>
 
               {/* Stats */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: "2.5rem", opacity: 0, animation: "fade-up 0.7s ease 1.5s forwards" }} aria-label="Key facts">
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: "2.5rem" }} aria-label="Key facts">
                 {[
                   { num: "5+", label: "Counties of operation", accent: true },
                   { num: "PBO", label: "Registered under PBO Act No. 18 of 2013", accent: false },

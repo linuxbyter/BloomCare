@@ -206,8 +206,21 @@ textarea.form-input { resize: vertical; min-height: 140px; }
   .how-grid { grid-template-columns: 1fr !important; }
   .impact-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .involve-grid { grid-template-columns: 1fr 1fr !important; }
+  .section { padding: 3rem 0; }
 }
 @media (max-width: 640px) {
-  .impact-grid { grid-template-columns: 1fr 1fr !important; }
+  .impact-grid { grid-template-columns: 1fr !important; }
   .involve-grid { grid-template-columns: 1fr !important; }
+  .section { padding: 2.5rem 0; }
+  .container { padding: 0 1rem; }
+  .programs-grid { grid-template-columns: 1fr !important; }
 }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer-link {
+  color: rgba(255,255,255,0.35);
+  transition: color var(--transition);
+}
+.footer-link:hover { color: var(--teal); }
