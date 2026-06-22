@@ -17,8 +17,16 @@ export default function Nav() {
   return (
     <header>
       <nav
-        className="sticky top-0 z-50 bg-white border-b border-gray-100"
-        style={{ height: 64, display: "flex", alignItems: "center" }}
+        className="sticky top-0 z-50"
+        style={{
+          height: 64,
+          display: "flex",
+          alignItems: "center",
+          background: "rgba(255,255,255,0.92)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          borderBottom: "1px solid var(--gray-100)",
+        }}
         role="navigation"
         aria-label="Main navigation"
       >
@@ -48,12 +56,7 @@ export default function Nav() {
               }}
             >
               <span
-                style={{
-                  fontSize: 16,
-                  color: "white",
-                  fontWeight: 700,
-                  fontFamily: "var(--font-playfair)",
-                }}
+                style={{ fontSize: 16, color: "white", fontWeight: 700, fontFamily: "var(--font-playfair)" }}
                 aria-hidden="true"
               >
                 B
@@ -77,12 +80,7 @@ export default function Nav() {
             </div>
           </Link>
 
-          {/* Desktop links */}
-          <ul
-            className="hidden md:flex"
-            style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}
-            role="list"
-          >
+          <ul className="hidden md:flex" style={{ alignItems: "center", gap: "0.25rem" }} role="list">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -93,7 +91,7 @@ export default function Nav() {
                     color: "var(--gray-700)",
                     padding: "6px 12px",
                     borderRadius: "var(--radius)",
-                    transition: "background var(--transition), color var(--transition)",
+                    transition: "all var(--transition)",
                   }}
                 >
                   {link.label}
@@ -111,7 +109,8 @@ export default function Nav() {
                   borderRadius: "50px",
                   fontSize: "0.8125rem",
                   fontWeight: 600,
-                  transition: "background var(--transition)",
+                  boxShadow: "0 2px 8px rgba(43,174,142,0.2)",
+                  transition: "all var(--transition)",
                 }}
               >
                 Donate
@@ -119,7 +118,6 @@ export default function Nav() {
             </li>
           </ul>
 
-          {/* Mobile toggle */}
           <button
             type="button"
             className="md:hidden"
@@ -139,7 +137,6 @@ export default function Nav() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <div
           className="md:hidden"

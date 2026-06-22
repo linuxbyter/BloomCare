@@ -1,3 +1,5 @@
+"use client";
+
 export default function Footer() {
   return (
     <footer
@@ -16,13 +18,23 @@ export default function Footer() {
         <strong style={{ color: "rgba(255,255,255,0.6)" }}>Bloom Care Foundation Kenya</strong>
         &nbsp;·&nbsp;Public Benefit Organisation
         &nbsp;·&nbsp;PBO Act No. 18 of 2013
-        &nbsp;·&nbsp;PBO Regulations 2026
       </p>
       <nav style={{ display: "flex", gap: "1.25rem" }} aria-label="Footer links">
-        <a href="#" style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.35)", transition: "color var(--transition)" }}>Privacy Policy</a>
-        <a href="#" style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.35)", transition: "color var(--transition)" }}>Safeguarding</a>
-        <a href="#" style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.35)", transition: "color var(--transition)" }}>Annual Report</a>
-        <a href="#" style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.35)", transition: "color var(--transition)" }}>Constitution</a>
+        {["Privacy Policy", "Safeguarding", "Annual Report", "Constitution"].map((link) => (
+          <a
+            key={link}
+            href="#"
+            style={{
+              fontSize: "0.75rem",
+              color: "rgba(255,255,255,0.35)",
+              transition: "color var(--transition)",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--teal)")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
+          >
+            {link}
+          </a>
+        ))}
       </nav>
     </footer>
   );
