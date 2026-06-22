@@ -2,17 +2,20 @@
 
 :root {
   --navy: #1B2D6B;
-  --teal: #2BAE8E;
-  --purple: #7B5EA7;
-  --gold: #E8A020;
-  --rose: #D4527A;
-
   --navy-light: #2a4190;
+  --navy-dark: #121f4a;
+  --teal: #2BAE8E;
   --teal-light: #3cc4a2;
+  --teal-muted: #e8f7f2;
+  --purple: #7B5EA7;
   --purple-light: #9579be;
+  --gold: #E8A020;
+  --gold-muted: #fdf6e8;
+  --rose: #D4527A;
 
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
+  --gray-150: #eceef2;
   --gray-200: #e5e7eb;
   --gray-300: #d1d5db;
   --gray-400: #9ca3af;
@@ -26,11 +29,14 @@
 @theme inline {
   --color-navy: var(--navy);
   --color-navy-light: var(--navy-light);
+  --color-navy-dark: var(--navy-dark);
   --color-teal: var(--teal);
   --color-teal-light: var(--teal-light);
+  --color-teal-muted: var(--teal-muted);
   --color-purple: var(--purple);
   --color-purple-light: var(--purple-light);
   --color-gold: var(--gold);
+  --color-gold-muted: var(--gold-muted);
   --color-rose: var(--rose);
 }
 
@@ -44,20 +50,24 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   font-family: var(--font-inter), "Inter", system-ui, sans-serif;
   color: var(--gray-800);
-  background: #fff;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+  background: #ffffff;
+  line-height: 1.65;
+  letter-spacing: -0.011em;
 }
 
 h1, h2, h3, h4 {
   font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
   color: var(--navy);
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
 a {
@@ -161,14 +171,21 @@ img {
   color: #fff;
   font-weight: 600;
   font-size: 0.9375rem;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(43, 174, 142, 0.2);
 }
 
 .btn-primary:hover {
   background: var(--teal-light);
+  box-shadow: 0 4px 16px rgba(43, 174, 142, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-outline {
@@ -181,14 +198,15 @@ img {
   color: var(--navy);
   font-weight: 600;
   font-size: 0.9375rem;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1.5px solid var(--gray-200);
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-outline:hover {
   border-color: var(--navy);
+  background: var(--gray-50);
 }
 
 .btn-donate {
@@ -197,18 +215,21 @@ img {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem 2rem;
-  background: var(--gold);
-  color: var(--navy);
-  font-weight: 700;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 600;
   font-size: 0.9375rem;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(27, 45, 107, 0.2);
 }
 
 .btn-donate:hover {
-  opacity: 0.9;
+  background: var(--navy-light);
+  box-shadow: 0 4px 16px rgba(27, 45, 107, 0.25);
+  transform: translateY(-1px);
 }
 
 /* ========================================
@@ -217,19 +238,20 @@ img {
 
 .form-input {
   width: 100%;
-  padding: 0.875rem 1rem;
+  padding: 0.875rem 1.125rem;
   border: 1.5px solid var(--gray-200);
-  border-radius: 8px;
+  border-radius: 10px;
   font-family: inherit;
   font-size: 0.9375rem;
   color: var(--gray-800);
   background: #fff;
-  transition: border-color 0.2s ease;
+  transition: all 0.2s ease;
   outline: none;
 }
 
 .form-input:focus {
   border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(43, 174, 142, 0.08);
 }
 
 .form-input::placeholder {
@@ -253,11 +275,19 @@ textarea.form-input {
   background: var(--navy);
   color: #fff;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 10px;
   z-index: 100;
   transition: top 0.2s ease;
 }
 
 .skip-link:focus {
   top: 1rem;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.text-balance {
+  text-wrap: balance;
 }

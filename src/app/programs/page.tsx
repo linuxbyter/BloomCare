@@ -21,6 +21,7 @@ const programs = [
       "School-based therapy support",
     ],
     counties: "All five operational counties",
+    color: "var(--teal)",
   },
   {
     id: "sensory-rooms",
@@ -34,6 +35,7 @@ const programs = [
       "Ongoing maintenance and support",
     ],
     counties: "Nairobi, Kiambu, Nyeri, Mombasa, Kisumu",
+    color: "var(--purple)",
   },
   {
     id: "caregiver-training",
@@ -48,6 +50,7 @@ const programs = [
       "Community awareness workshops",
     ],
     counties: "All five operational counties",
+    color: "var(--gold)",
   },
   {
     id: "nutrition",
@@ -61,6 +64,7 @@ const programs = [
       "Collaboration with healthcare providers",
     ],
     counties: "Nairobi, Kiambu, Nyeri",
+    color: "var(--rose)",
   },
   {
     id: "equipment",
@@ -74,58 +78,68 @@ const programs = [
       "Training on equipment usage",
     ],
     counties: "All five operational counties",
+    color: "var(--navy)",
   },
 ];
 
 export default function ProgramsPage() {
   return (
     <div className="bg-white">
-      {/* Page Header */}
-      <div className="max-w-6xl mx-auto px-6 md:px-8 pt-20 md:pt-28 pb-16">
-        <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">
+      {/* Header */}
+      <div className="max-w-6xl mx-auto px-6 md:px-8 pt-16 pb-12 md:pt-24 md:pb-16">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal mb-5 block">
           Programs
-        </p>
-        <h1 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+        </span>
+        <h1 className="text-3xl md:text-[2.75rem] font-bold text-navy mb-5 text-balance">
           What we do
         </h1>
-        <p className="text-base text-gray-500 leading-relaxed max-w-2xl">
+        <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl">
           Five core programs designed to support children with developmental
           conditions and their families across Kenya.
         </p>
       </div>
 
-      {/* Program List */}
-      <div className="max-w-6xl mx-auto px-6 md:px-8 pb-20 md:pb-28">
-        <div className="space-y-16">
+      {/* Programs */}
+      <div className="max-w-6xl mx-auto px-6 md:px-8 pb-24 md:pb-32">
+        <div className="space-y-0">
           {programs.map((program, index) => (
             <section
               key={program.id}
               id={program.id}
               className="scroll-mt-24"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 py-12 md:py-16">
                 <div className="lg:col-span-4">
-                  <span className="text-xs font-semibold text-teal tabular-nums">
-                    0{index + 1}
-                  </span>
-                  <h2 className="text-xl md:text-2xl font-bold text-navy mt-1 mb-3">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div
+                      className="w-2 h-8 rounded-full"
+                      style={{ background: program.color }}
+                    />
+                    <span className="text-[11px] font-bold text-gray-400 tabular-nums tracking-wider">
+                      0{index + 1}
+                    </span>
+                  </div>
+                  <h2 className="text-xl md:text-2xl font-bold text-navy">
                     {program.title}
                   </h2>
-                  <p className="text-xs text-gray-400">
-                    Available in: {program.counties}
+                  <p className="text-xs text-gray-400 mt-2">
+                    {program.counties}
                   </p>
                 </div>
                 <div className="lg:col-span-8">
                   <p className="text-sm text-gray-500 leading-relaxed mb-6">
                     {program.description}
                   </p>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5">
                     {program.details.map((detail) => (
                       <li
                         key={detail}
                         className="flex items-start gap-3 text-sm text-gray-600"
                       >
-                        <span className="w-1 h-1 rounded-full bg-teal mt-2 flex-shrink-0" />
+                        <span
+                          className="w-1 h-1 rounded-full mt-2 shrink-0"
+                          style={{ background: program.color }}
+                        />
                         {detail}
                       </li>
                     ))}
@@ -133,22 +147,22 @@ export default function ProgramsPage() {
                 </div>
               </div>
               {index < programs.length - 1 && (
-                <hr className="mt-16 border-gray-100" />
+                <div className="h-px bg-gray-100" />
               )}
             </section>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="mt-20 pt-16 border-t border-gray-100 text-center">
+        <div className="mt-16 pt-16 border-t border-gray-100 text-center">
           <h2 className="text-2xl font-bold text-navy mb-3">
             Interested in our programs?
           </h2>
-          <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
+          <p className="text-sm text-gray-400 mb-8 max-w-md mx-auto">
             Contact us to learn more about how you can access or support our
             programs.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/contact" className="btn-primary">
               Contact Us
             </Link>

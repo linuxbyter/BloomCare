@@ -37,7 +37,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>
       <div>
-        <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-1.5">
+        <label htmlFor="contact-name" className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
           Name
         </label>
         <input
@@ -50,7 +50,7 @@ export default function ContactForm() {
         />
       </div>
       <div>
-        <label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 mb-1.5">
+        <label htmlFor="contact-email" className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
           Email
         </label>
         <input
@@ -63,7 +63,7 @@ export default function ContactForm() {
         />
       </div>
       <div>
-        <label htmlFor="contact-message" className="block text-sm font-medium text-gray-700 mb-1.5">
+        <label htmlFor="contact-message" className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
           Message
         </label>
         <textarea
@@ -77,16 +77,16 @@ export default function ContactForm() {
       </div>
 
       {status === "sent" && (
-        <p className="text-sm text-teal font-medium">Thank you. We will get back to you shortly.</p>
+        <p className="text-sm font-medium text-teal">Thank you. We will get back to you shortly.</p>
       )}
       {status === "error" && (
-        <p className="text-sm text-rose font-medium">Something went wrong. Please try again.</p>
+        <p className="text-sm font-medium text-rose">Something went wrong. Please try again.</p>
       )}
 
       <button
         type="submit"
         disabled={status === "sending"}
-        className="btn-primary w-full sm:w-auto"
+        className="btn-primary w-full sm:w-auto disabled:opacity-40 disabled:cursor-not-allowed"
       >
         {status === "sending" ? "Sending…" : "Send Message"}
       </button>

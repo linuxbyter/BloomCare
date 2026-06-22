@@ -60,19 +60,20 @@ export function GlassmorphismNavBar({
       {/* Desktop — fixed top glassmorphism bar */}
       <div
         className={cn(
-          "hidden md:block fixed top-0 left-1/2 -translate-x-1/2 z-50 pt-4",
+          "hidden md:block fixed top-0 left-1/2 -translate-x-1/2 z-50 pt-5",
           className
         )}
       >
         <nav
           aria-label="Main navigation"
           className={cn(
-            "flex items-center gap-1 py-1.5 px-2 rounded-full transition-all duration-300",
-            "bg-white/40 border border-black/5 backdrop-blur-xl"
+            "flex items-center gap-0.5 py-1.5 px-2 rounded-full",
+            "bg-white/60 border border-white/80"
           )}
           style={{
-            backdropFilter: "blur(20px) saturate(180%)",
-            WebkitBackdropFilter: "blur(20px) saturate(180%)",
+            backdropFilter: "blur(24px) saturate(180%)",
+            WebkitBackdropFilter: "blur(24px) saturate(180%)",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)",
           }}
         >
           {items.map((item) => {
@@ -84,37 +85,34 @@ export function GlassmorphismNavBar({
                 href={item.url}
                 onClick={() => setActiveTab(item.name)}
                 className={cn(
-                  "relative text-sm font-medium px-5 py-2 rounded-full transition-all duration-300",
-                  "text-gray-500 hover:text-navy",
-                  isActive && "text-navy bg-navy/5"
+                  "relative text-[13px] font-medium px-5 py-2 rounded-full transition-all duration-300",
+                  "text-gray-400 hover:text-navy",
+                  isActive && "text-navy font-semibold"
                 )}
               >
                 <span>{item.name}</span>
                 {isActive && (
                   <motion.div
                     layoutId="nav-indicator"
-                    className="absolute inset-0 w-full rounded-full -z-10 bg-navy/5"
+                    className="absolute inset-0 rounded-full -z-10"
+                    style={{ background: "rgba(27, 45, 107, 0.06)" }}
                     initial={false}
                     transition={{
                       type: "spring",
-                      stiffness: 300,
+                      stiffness: 350,
                       damping: 30,
                     }}
-                  >
-                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 rounded-t-full bg-navy/80">
-                      <div className="absolute w-12 h-6 rounded-full blur-md -top-2 -left-2 bg-navy/20" />
-                    </div>
-                  </motion.div>
+                  />
                 )}
               </Link>
             );
           })}
 
-          <div className="w-px h-6 bg-gray-200 mx-1" />
+          <div className="w-px h-5 bg-gray-200/80 mx-2" />
 
           <Link
             href="/donate"
-            className="text-sm font-semibold px-5 py-2 rounded-full bg-gold text-navy hover:opacity-90 transition-opacity"
+            className="text-[13px] font-semibold px-5 py-2 rounded-full bg-navy text-white hover:bg-navy-light transition-all duration-300"
           >
             Donate
           </Link>
@@ -123,16 +121,17 @@ export function GlassmorphismNavBar({
 
       {/* Mobile — bottom floating glassmorphism bar */}
       {isMobile && (
-        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden">
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 md:hidden">
           <nav
             aria-label="Mobile navigation"
             className={cn(
-              "flex items-center gap-1 py-1.5 px-1.5 rounded-full transition-all duration-300",
-              "bg-white/40 border border-black/5"
+              "flex items-center gap-1 py-2 px-2 rounded-full",
+              "bg-white/70 border border-white/80"
             )}
             style={{
-              backdropFilter: "blur(20px) saturate(180%)",
-              WebkitBackdropFilter: "blur(20px) saturate(180%)",
+              backdropFilter: "blur(24px) saturate(180%)",
+              WebkitBackdropFilter: "blur(24px) saturate(180%)",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)",
             }}
           >
             {items.map((item) => {
@@ -146,20 +145,21 @@ export function GlassmorphismNavBar({
                   onClick={() => setActiveTab(item.name)}
                   className={cn(
                     "relative p-2.5 rounded-full transition-all duration-300",
-                    "text-gray-400 hover:text-navy",
-                    isActive && "text-navy bg-navy/5"
+                    "text-gray-400",
+                    isActive && "text-navy"
                   )}
                   aria-label={item.name}
                 >
-                  <Icon size={20} strokeWidth={2} />
+                  <Icon size={20} strokeWidth={isActive ? 2.2 : 1.8} />
                   {isActive && (
                     <motion.div
                       layoutId="mobile-indicator"
-                      className="absolute inset-0 w-full rounded-full -z-10 bg-navy/5"
+                      className="absolute inset-0 rounded-full -z-10"
+                      style={{ background: "rgba(27, 45, 107, 0.06)" }}
                       initial={false}
                       transition={{
                         type: "spring",
-                        stiffness: 300,
+                        stiffness: 350,
                         damping: 30,
                       }}
                     />
@@ -168,14 +168,14 @@ export function GlassmorphismNavBar({
               );
             })}
 
-            <div className="w-px h-6 bg-gray-200 mx-0.5" />
+            <div className="w-px h-6 bg-gray-200/80 mx-1" />
 
             <Link
               href="/donate"
-              className="p-2.5 rounded-full text-gold hover:bg-gold/10 transition-colors"
+              className="p-2.5 rounded-full text-navy"
               aria-label="Donate"
             >
-              <Heart size={20} strokeWidth={2} />
+              <Heart size={20} strokeWidth={1.8} />
             </Link>
           </nav>
         </div>

@@ -57,40 +57,55 @@ const posts = [
   },
 ];
 
+const categoryColors: Record<string, string> = {
+  "Program Update": "var(--teal)",
+  Training: "var(--gold)",
+  Milestone: "var(--purple)",
+  Event: "var(--rose)",
+  Impact: "var(--navy)",
+  Partnership: "var(--teal)",
+};
+
 export default function NewsPage() {
   return (
     <div className="bg-white">
-      <div className="max-w-6xl mx-auto px-6 md:px-8 pt-20 md:pt-28 pb-16">
-        <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">
+      <div className="max-w-6xl mx-auto px-6 md:px-8 pt-16 pb-12 md:pt-24 md:pb-16">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal mb-5 block">
           News & Stories
-        </p>
-        <h1 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+        </span>
+        <h1 className="text-3xl md:text-[2.75rem] font-bold text-navy mb-5">
           Latest updates
         </h1>
-        <p className="text-base text-gray-500 leading-relaxed max-w-2xl">
+        <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl">
           Stories of impact, program updates, and news from Bloom Care
           Foundation Kenya.
         </p>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-8 pb-20 md:pb-28">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto px-6 md:px-8 pb-24 md:pb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {posts.map((post) => (
             <article
               key={post.slug}
-              className="group border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors"
+              className="group p-7 rounded-2xl border border-gray-100 hover:border-gray-200 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-xs font-medium text-teal">
+              <div className="flex items-center gap-3 mb-5">
+                <span
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider"
+                  style={{
+                    color: categoryColors[post.category] || "var(--teal)",
+                    background: `color-mix(in srgb, ${categoryColors[post.category] || "var(--teal)"} 8%, transparent)`,
+                  }}
+                >
                   {post.category}
                 </span>
                 <span className="text-xs text-gray-300">·</span>
                 <time className="text-xs text-gray-400">{post.date}</time>
               </div>
-              <h2 className="text-lg font-bold text-navy mb-2 group-hover:text-teal transition-colors">
+              <h2 className="text-lg font-bold text-navy mb-3 group-hover:text-teal transition-colors duration-300">
                 {post.title}
               </h2>
-              <p className="text-sm text-gray-500 leading-relaxed">
+              <p className="text-sm text-gray-400 leading-relaxed">
                 {post.excerpt}
               </p>
             </article>
