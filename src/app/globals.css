@@ -78,6 +78,10 @@ ul { list-style: none; }
   0%   { opacity: 0; transform: translateX(-16px); }
   100% { opacity: 1; transform: translateX(0); }
 }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
 
 /* ============================================================
    BUTTONS
@@ -90,20 +94,39 @@ ul { list-style: none; }
   font-weight: 600;
   padding: 12px 28px;
   border-radius: 50px;
-  transition: all var(--transition);
+  transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
   cursor: pointer;
   border: none;
   font-family: inherit;
 }
-.btn--primary { background: var(--teal); color: var(--white); box-shadow: 0 2px 8px rgba(43,174,142,0.25); }
-.btn--primary:hover { background: var(--teal-dk); box-shadow: 0 4px 16px rgba(43,174,142,0.3); transform: translateY(-1px); }
+.btn--primary {
+  background: linear-gradient(135deg, var(--teal), var(--teal-dk));
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(43,174,142,0.3);
+}
+.btn--primary:hover {
+  box-shadow: 0 6px 24px rgba(43,174,142,0.4);
+  transform: translateY(-2px);
+}
 .btn--ghost {
-  background: transparent; color: var(--white);
+  background: transparent;
+  color: var(--white);
   border: 1.5px solid rgba(255,255,255,0.3);
 }
-.btn--ghost:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.05); }
-.btn--navy { background: var(--navy); color: var(--white); }
-.btn--navy:hover { background: var(--teal); transform: translateY(-1px); }
+.btn--ghost:hover {
+  border-color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-2px);
+}
+.btn--navy {
+  background: linear-gradient(135deg, var(--navy), var(--navy-dk));
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(27,45,107,0.25);
+}
+.btn--navy:hover {
+  background: linear-gradient(135deg, var(--teal), var(--teal-dk));
+  transform: translateY(-2px);
+}
 
 /* ============================================================
    FORM
@@ -117,7 +140,7 @@ ul { list-style: none; }
   font-size: 0.9375rem;
   color: var(--gray-700);
   background: var(--white);
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   outline: none;
 }
 .form-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(43,174,142,0.1); }
@@ -128,17 +151,19 @@ textarea.form-input { resize: vertical; min-height: 140px; }
    HOVER EFFECTS
    ============================================================ */
 .hover-lift {
-  transition: all var(--transition);
+  transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
 }
 .hover-lift:hover {
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
   border-color: var(--gray-200);
+  transform: translateY(-2px);
 }
 .hover-card {
-  transition: all var(--transition);
+  transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
 }
 .hover-card:hover {
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
 }
 
 /* ============================================================
@@ -178,7 +203,7 @@ textarea.form-input { resize: vertical; min-height: 140px; }
   content: '';
   width: 20px;
   height: 2px;
-  background: var(--teal);
+  background: linear-gradient(90deg, var(--teal), var(--teal-dk));
   border-radius: 1px;
 }
 
@@ -198,22 +223,31 @@ textarea.form-input { resize: vertical; min-height: 140px; }
 }
 
 /* ============================================================
+   3D CARD EFFECTS
+   ============================================================ */
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
   .hero-logo-block { order: -1; }
   .how-grid { grid-template-columns: 1fr !important; }
-  .impact-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .involve-grid { grid-template-columns: 1fr 1fr !important; }
   .section { padding: 3rem 0; }
 }
+@media (max-width: 768px) {
+  .impact-grid-responsive { grid-template-columns: repeat(2, 1fr) !important; }
+}
 @media (max-width: 640px) {
-  .impact-grid { grid-template-columns: 1fr !important; }
+  .impact-grid-responsive { grid-template-columns: 1fr !important; }
   .involve-grid { grid-template-columns: 1fr !important; }
   .section { padding: 2.5rem 0; }
   .container { padding: 0 1rem; }
-  .programs-grid { grid-template-columns: 1fr !important; }
 }
 
 /* ============================================================
@@ -221,6 +255,18 @@ textarea.form-input { resize: vertical; min-height: 140px; }
    ============================================================ */
 .footer-link {
   color: rgba(255,255,255,0.35);
-  transition: color var(--transition);
+  transition: color 0.3s ease;
 }
 .footer-link:hover { color: var(--teal); }
+
+/* ============================================================
+   SCROLL ANIMATIONS (fallback for no-JS)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

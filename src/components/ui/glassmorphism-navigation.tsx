@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 interface NavItem {
   name: string;
   url: string;
-  icon: React.ElementType;
+  icon: React.FC<{ size?: number }>;
 }
 
 const defaultItems: NavItem[] = [
@@ -150,7 +150,7 @@ export function GlassmorphismNavBar({
                   )}
                   aria-label={item.name}
                 >
-                  <Icon size={20} strokeWidth={isActive ? 2.2 : 1.8} />
+                  <Icon size={20} />
                   {isActive && (
                     <motion.div
                       layoutId="mobile-indicator"
@@ -175,7 +175,7 @@ export function GlassmorphismNavBar({
               className="p-2.5 rounded-full text-navy"
               aria-label="Donate"
             >
-              <Heart size={20} strokeWidth={1.8} />
+              <Heart size={20} />
             </Link>
           </nav>
         </div>
