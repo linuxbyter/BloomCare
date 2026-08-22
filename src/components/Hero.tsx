@@ -112,29 +112,26 @@ export default function Hero() {
         <div
           style={{
             position: "relative",
-            height: "100%",
-            minHeight: 500,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "linear-gradient(135deg, rgba(43,174,142,0.04) 0%, rgba(27,45,107,0.04) 100%)",
+            borderRadius: "20px",
+            padding: "3rem",
+            minHeight: 400,
           }}
         >
-          <div
+          <img
+            src="/images/logo.jpg"
+            alt="Bloom Care Foundation Kenya"
             style={{
-              position: "absolute",
-              inset: 0,
-              borderRadius: "20px 0 0 20px",
-              overflow: "hidden",
-              background: "var(--gray-50)",
+              width: 200,
+              height: 200,
+              objectFit: "contain",
+              borderRadius: "50%",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
             }}
-          >
-            <img
-              src="/images/logo.jpg"
-              alt="Bloom Care Foundation Kenya"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
-          </div>
+          />
           {/* Floating stat card */}
           <div
             style={{
